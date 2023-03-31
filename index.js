@@ -3,7 +3,7 @@ const app = exp();
 const cors= require("cors");
 const m = require('mongodb').MongoClient;
 
-let post=[],col=null;
+let post=[],col=null
 app.use(exp.json())
 app.use(cors({
     origin:"*"
