@@ -14,6 +14,7 @@ col=c.db().collection("progeni")).then(()=>{
     col.find().forEach(e => post.push(e));});
     
 app.get('/',(req,res)=>res.json(post))
+app.get('/1',(req,res)=>res.json(post))
 
 app.post('/',(req,res)=>{
     col.insertOne(req.body.post)
@@ -21,7 +22,7 @@ app.post('/',(req,res)=>{
     res.json(post)})
 
 app.post('/1',(res,req)=>{
-    col.insertOne(req.body.post)
+    col.updateOne({"id":req.body.id},{$set:{"ts":"Paid"}});
     for(let i=0;i<post.length;i++)
     if(post[i].id==req.body.id)
     post[i].ts="Paid";
