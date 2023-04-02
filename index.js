@@ -21,9 +21,9 @@ app.post('/',(req,res)=>{
     post.push(req.body.post)
     res.json(post)}
     else{
-    col.updateOne({id:req.body.id},{$set:{ts:"Paid"}});
+    col.updateOne({id:req.body.post.id},{$set:{ts:"Paid"}});
     for(let i=0;i<post.length;i++)
-    if(post[i].id==req.body.id)
+    if(post[i].id==req.body.post.id)
     post[i].ts="Paid";
     res.json(post);
     }
