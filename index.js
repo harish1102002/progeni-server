@@ -14,7 +14,6 @@ col=c.db().collection("progeni")).then(()=>{
     col.find().forEach(e => post.push(e));});
     
 app.get('/',(req,res)=>res.json(post))
-app.get('/1',(req,res)=>res.json(post))
 
 app.post('/',(req,res)=>{
     if(req.body.keys().length==1){
