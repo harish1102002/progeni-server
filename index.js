@@ -20,4 +20,12 @@ app.post('/',(req,res)=>{
     post.push(req.body.post)
     res.json(post)})
 
+app.post('/admin',(res,req)=>{
+    col.updateOne({"id":req.body.id},{$set:{ts:req.body.ts}});
+    for(let i=0;i<post.length;i++)
+    if(post[i].id==req.body.id)
+    post[i].ts=req.body.ts;
+    res.json(post);
+})
+
 app.listen(process.env.PORT||8000)
