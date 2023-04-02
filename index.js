@@ -20,10 +20,12 @@ app.post('/',(req,res)=>{
     post.push(req.body.post)
     res.json(post)})
 
-app.post('/admin',(res,req)=>{
-    col.insertOne(req.body.post)
-    post.push(req.body.post)
-    res.json(post)
+app.post('/1',(res,req)=>{
+    col.updateMany({"id":req.body.id},{$set:{"ts":"Paid"}});
+    for(let i=0;i<post.length;i++)
+    if(post[i].id==req.body.id)
+    post[i].ts="Paid";
+    res.json(post);
 })
 
 app.listen(process.env.PORT||8000)
