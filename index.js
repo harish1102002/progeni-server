@@ -21,7 +21,7 @@ app.post('/',(req,res)=>{
     res.json(post)})
 
 app.post('/1',(res,req)=>{
-    col.updateMany({"id":req.body.id},{$set:{"ts":"Paid"}});
+    col.updateOne({"id":req.body.id},{$set:{"ts":"Paid"}});
     for(let i=0;i<post.length;i++)
     if(post[i].id==req.body.id)
     post[i].ts="Paid";
