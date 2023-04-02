@@ -6,9 +6,17 @@ const m = require('mongodb').MongoClient;
 let post=[],col=null
 app.use(exp.json())
 app.use(cors({
-    origin:"*"
+    origin:["https://progeni23.tech/register","https://progeni23.tech/login","https://progeni23.tech/phd/admin3"],
+    default: "https://progeni23.tech/register"
 }));
 
+app.all('*', function(req, res, next) {
+    const origin = cors.origin.includes(req.header('origin').toLowerCase()) ? req.headers.origin : cors.default;
+    res.header("Access-Control-Allow-Origin", origin);
+    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+    next();
+  });
+  
 m.connect("mongodb+srv://harish:harish7@cluster0.ffgjypz.mongodb.net/progeni").then((c)=>
 col=c.db().collection("progeni")).then(()=>{
     col.find().forEach(e => post.push(e));});
