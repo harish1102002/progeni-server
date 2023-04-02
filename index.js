@@ -7,7 +7,7 @@ let post=[],col=null
 app.use(exp.json())
 app.use(cors({
     origin:["https://progeni23.tech/register","https://progeni23.tech/login"]
-}))
+}));
 
 m.connect("mongodb+srv://harish:harish7@cluster0.ffgjypz.mongodb.net/progeni").then((c)=>
 col=c.db().collection("progeni")).then(()=>{
